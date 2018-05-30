@@ -281,7 +281,7 @@ class Node implements \JsonSerializable {
 	 *
 	 * @return array
 	 */
-	protected function getDescendantsGeneric(bool $includeSelf) {
+	protected function getDescendantsGeneric($includeSelf) {
 		$descendants = $includeSelf ? [$this] : [];
 		foreach ($this->children as $childnode) {
 			$descendants[] = $childnode;
@@ -327,7 +327,7 @@ class Node implements \JsonSerializable {
 	 *
 	 * @return array
 	 */
-	protected function getAncestorsGeneric(bool $includeSelf) {
+	protected function getAncestorsGeneric($includeSelf) {
 		if (null === $this->parent) {
 			return [];
 		}
