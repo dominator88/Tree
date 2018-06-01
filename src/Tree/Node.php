@@ -36,7 +36,7 @@ class Node implements \JsonSerializable {
 	 * @param string|int $parent
 	 * @param array      $properties Associative array of node properties
 	 */
-	public function __construct($id, $parent, array $properties = []) {
+	public function __construct($id, $parent, $properties = []) {
 		$this->properties = array_change_key_case($properties, CASE_LOWER);
 		unset($this->properties['id'], $this->properties['parent']);
 		$this->properties['id'] = $id;
@@ -79,7 +79,7 @@ class Node implements \JsonSerializable {
 	 *
 	 * @return Node|null
 	 */
-	private function getSibling(int $offset) {
+	private function getSibling($offset) {
 		$siblingsAndSelf = $this->parent->getChildren();
 		$pos = array_search($this, $siblingsAndSelf, true);
 		if (isset($siblingsAndSelf[$pos + $offset])) {
@@ -112,7 +112,7 @@ class Node implements \JsonSerializable {
 	 *
 	 * @return array
 	 */
-	protected function getSiblingsGeneric(bool $includeSelf) {
+	protected function getSiblingsGeneric($includeSelf) {
 		$siblings = [];
 		foreach ($this->parent->getChildren() as $child) {
 			if ($includeSelf || (string) $child->getId() !== (string) $this->getId()) {

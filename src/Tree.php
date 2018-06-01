@@ -50,7 +50,7 @@ class Tree implements \JsonSerializable {
 	 * @throws \BlueM\Tree\Exception\InvalidDatatypeException
 	 * @throws \InvalidArgumentException
 	 */
-	public function __construct($data = [], array $options = []) {
+	public function __construct($data = [], $options = []) {
 		$options = array_change_key_case($options, CASE_LOWER);
 
 		if (isset($options['rootid'])) {
@@ -83,7 +83,7 @@ class Tree implements \JsonSerializable {
 	 * @throws \BlueM\Tree\Exception\InvalidParentException
 	 * @throws \BlueM\Tree\Exception\InvalidDatatypeException
 	 */
-	public function rebuildWithData(array $data) {
+	public function rebuildWithData($data) {
 		$this->build($data);
 	}
 
@@ -144,8 +144,8 @@ class Tree implements \JsonSerializable {
 	 *
 	 * @return Node|null
 	 */
-	public function getNodeByValuePath($name, array $search) {
-		$findNested = function (array $nodes, array $tokens) use ($name, &$findNested) {
+	public function getNodeByValuePath($name, $search) {
+		$findNested = function ($nodes, $tokens) use ($name, &$findNested) {
 			$token = array_shift($tokens);
 			foreach ($nodes as $node) {
 				$nodeName = $node->get($name);
@@ -257,7 +257,7 @@ class Tree implements \JsonSerializable {
 	 *
 	 * @return Node
 	 */
-	protected function createNode($id, $parent, array $properties): Node {
+	protected function createNode($id, $parent, $properties): Node {
 		return new Node($id, $parent, $properties);
 	}
 }
