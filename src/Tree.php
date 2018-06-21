@@ -257,7 +257,7 @@ class Tree implements \JsonSerializable {
 	 *
 	 * @return Node
 	 */
-	protected function createNode($id, $parent, $properties): Node {
+	protected function createNode($id, $parent, $properties) {
 		return new Node($id, $parent, $properties);
 	}
 }
